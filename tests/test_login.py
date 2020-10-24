@@ -27,6 +27,11 @@ class TestLogin():
             home = HomePage(driver)
             home.clickAccount()
             home.clickLogout()
+            currTime = moment.now().strftime("%d-%m-%Y_%H-%M-%S")
+            testName = utils.whoami()
+            screenshotName = testName + "_" + currTime
+            driver.get_screenshot_as_file(
+                "C:/Users/kartikp/PycharmProjects/PythonAutomationFramework/screenshots/" + screenshotName + ".png")
             pageTitle = driver.title()
             print(pageTitle)
             assert pageTitle == "Customer Login"
