@@ -28,9 +28,11 @@ class TestLogin():
         except AssertionError as error:
             print("Assertion error occurred")
             print(error)
+            #The below code will take screenshot with current timestamp
             currTime = moment.now().strftime("%d-%m-%Y_%H-%M-%S")
             testName = utils.whoami()
             screenshotName = testName+"_"+currTime
+            #The below code will generate allure reports
             allure.attach(self.driver.get_screenshot_as_png(),name=screenshotName,
                           attachment_type=allure.attachment_type.PNG)
             driver.get_screenshot_as_file("C:\\Users\\kartik.patel\\PycharmProjects\\PythonAutomationFramework\\screenshots\\"+ screenshotName +".png")
