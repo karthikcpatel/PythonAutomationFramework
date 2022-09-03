@@ -1,7 +1,7 @@
 import pytest
 from pages.loginPage import LoginPage
 from pages.homePage import HomePage
-from utils import  utils as utils
+from utils import utils as utils
 import allure
 import moment
 
@@ -9,6 +9,8 @@ import moment
 class TestLogin():
 
     def test_login(self):
+        """This function will perform the login operation.
+        """
         driver = self.driver
         driver.get(utils.URL)
 
@@ -18,12 +20,14 @@ class TestLogin():
         login.click_login()
 
     def test_logout(self):
+        """This function will click on logout button on home page.
+        """
         try:
-            driver = self.driver
-            homepage = HomePage(driver)
+            #driver = self.driver
+            homepage = HomePage(self.driver)
             homepage.click_welcome()
             homepage.click_logout()
-            x = driver.title
+            x = self.driver.title
             assert x == "OrangeHRM"
         except AssertionError as error:
             print("Assertion error occurred")
@@ -35,7 +39,7 @@ class TestLogin():
             #The below code will generate allure reports
             allure.attach(self.driver.get_screenshot_as_png(),name=screenshotName,
                           attachment_type=allure.attachment_type.PNG)
-            driver.get_screenshot_as_file("C:\\Users\\kartik.patel\\PycharmProjects\\PythonAutomationFramework\\screenshots\\"+ screenshotName +".png")
+            self.driver.get_screenshot_as_file("C:\\Users\\kartik.patel\\PycharmProjects\\PythonAutomationFramework\\screenshots\\"+ screenshotName +".png")
 
             raise
         except:
@@ -45,7 +49,7 @@ class TestLogin():
             screenshotName = testName + "_" + currTime
             allure.attach(self.driver.get_screenshot_as_png(), name=screenshotName,
                           attachment_type=allure.attachment_type.PNG)
-            driver.get_screenshot_as_file(
+            self.driver.get_screenshot_as_file(
                 "C:\\Users\\kartik.patel\\PycharmProjects\\PythonAutomationFramework\\screenshots\\"+ screenshotName +".png")
 
             raise
