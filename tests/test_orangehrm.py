@@ -6,15 +6,11 @@ import allure
 import moment
 
 @pytest.mark.usefixtures("test_setup")
-class TestLogin():
+class TestLogin:
 
     def test_login(self):
-        """This function will perform the login operation.
-        """
-        driver = self.driver
-        driver.get(utils.URL)
-
-        login = LoginPage(driver)
+        self.driver.get(utils.URL)
+        login = LoginPage(self.driver)
         login.enter_username(utils.USERNAME)
         login.enter_password(utils.PASSWORD)
         login.click_login()

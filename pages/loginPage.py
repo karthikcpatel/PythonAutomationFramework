@@ -1,23 +1,43 @@
 from selenium.webdriver.common.by import By
+from pages.basePage import BasePage
 
-class LoginPage:
+class LoginPage(BasePage):
 
     def __init__(self, driver):
-        self.driver = driver
+        super().__init__(driver)
 
-        self.username_textbox_name = "username"
-        self.password_textbox_name = "password"
-        self.login_button_xpath = "//button[@type='submit']"
+        self.username = {
+            "primary": (By.NAME, "username"),
+            "fallbacks": [
+                (By.XPATH, "//input[@placeholder='Username']"),
+                (By.CSS_SELECTOR, "input[type='text']")
+            ]
+        }
+
+        self.password = {
+            "primary": (By.NAME, "password"),
+            "fallbacks": [
+                (By.XPATH, "//input[@type='password']")
+            ]
+        }
+
+        self.login_button = {
+            "primary": (By.XPATH, "//button[@type='submit']"),
+            "fallbacks": [
+                (By.XPATH, "//button[contains(.,'Login')]"),
+                (By.CSS_SELECTOR, "button.oxd-button")
+            ]
+        }
 
     def enter_username(self, username):
-        element = self.driver.find_element(By.NAME, self.username_textbox_name)
-        element.clear()
-        element.send_keys(username)
+        el = self.find("username", self.username)
+        el.clear()
+        el.send_keys(username)
 
     def enter_password(self, password):
-        element = self.driver.find_element(By.NAME, self.password_textbox_name)
-        element.clear()
-        element.send_keys(password)
+        el = self.find("password", self.password)
+        el.clear()
+        el.send_keys(password)
 
     def click_login(self):
-        self.driver.find_element(By.XPATH, self.login_button_xpath).click()
+        self.find("login_button", self.login_button).click()
