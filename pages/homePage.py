@@ -5,7 +5,7 @@ class HomePage():
     def __init__(self, driver):
         self.driver = driver
 
-        self.profile_link = "//p[text()='<div>Test</div> ramel']"
+        self.profile_link = "//p[text()='manda user']"
         self.logout_link_linkText = "Logout"
 
     def click_welcome(self):
