@@ -14,6 +14,7 @@ class LoginPage(BasePage):
             ]
         }
 
+
         self.password = {
             "primary": (By.NAME, "password"),
             "fallbacks": [
