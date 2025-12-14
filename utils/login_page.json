@@ -1,0 +1,25 @@
+{
+  "username": {
+    "primary": ["name", "username"],
+    "fallbacks": [
+      ["xpath", "//input[@placeholder='Username']"],
+      ["css", "input[type='text']"]
+    ]
+  },
+
+  "password": {
+    "primary": ["name", "password"],
+    "fallbacks": [
+      ["xpath", "//input[@type='password']"],
+      ["css", "input[type='password']"]
+    ]
+  },
+
+  "login_button": {
+    "primary": ["xpath", "//button[@type='submit']"],
+    "fallbacks": [
+      ["xpath", "//button[contains(text(),'Login')]"],
+      ["css", "button.oxd-button"]
+    ]
+  }
+}
