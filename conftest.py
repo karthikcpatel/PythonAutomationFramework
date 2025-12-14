@@ -6,7 +6,6 @@ def pytest_addoption(parser):
     parser.addoption("--browser", action="store", default="chrome", help="Type in browser name e.g. chrome OR firefox")
 
 @pytest.fixture(scope="class")
-
 def test_setup(request):
     from selenium import webdriver
 
